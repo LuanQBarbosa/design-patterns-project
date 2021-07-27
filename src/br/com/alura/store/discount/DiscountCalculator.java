@@ -7,15 +7,13 @@ import br.com.alura.store.budget.Budget;
 public class DiscountCalculator {
     
     public BigDecimal calculate(Budget budget) {
-        if(budget.getItemsQuantity() > 5) {
-            return budget.getValue().multiply(new BigDecimal("0.1"));
-        }
+        Discount discount = new MoreThanFiveItemsDiscount(
+            new MoreThanFiveHundredValueDiscount(
+                new NoDiscount()
+            )
+        );
 
-        if(budget.getValue().compareTo(new BigDecimal("500")) > 0) {
-            return budget.getValue().multiply(new BigDecimal("0.1"));
-        }
-
-        return BigDecimal.ZERO;
+        return discount.calculate(budget);
     }
     
 }
