@@ -10,8 +10,12 @@ public class NoDiscount extends Discount {
         super(null);
     }
 
-    public BigDecimal calculate(Budget budget) {
+    public BigDecimal executeCalculation(Budget budget) {
         return BigDecimal.ZERO;
+    }
+
+    public boolean shouldApply(Budget budget) {
+        return true;
     }
     
 }
