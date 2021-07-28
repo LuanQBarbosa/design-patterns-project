@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import br.com.alura.store.budget.Budget;
+import br.com.alura.store.order.action.SendOrderEmail;
+import br.com.alura.store.order.action.StoreOrderOnDatabase;
 
 public class GenerateOrder {
     
@@ -23,8 +25,12 @@ public class GenerateOrder {
 
         Order order = new Order(this.client, date, budget);
 
-        System.out.println("Save order to database");
-        System.out.println("Send email with new order data");
+        // Possible order actions
+        SendOrderEmail email = new SendOrderEmail();
+        StoreOrderOnDatabase store = new StoreOrderOnDatabase();
+
+        email.execute(order);
+        store.execute(order);
     }
     
 }
