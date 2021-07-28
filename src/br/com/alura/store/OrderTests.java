@@ -1,22 +1,18 @@
 package br.com.alura.store;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
-import br.com.alura.store.budget.Budget;
-import br.com.alura.store.order.Order;
+import br.com.alura.store.order.GenerateOrder;
 
 public class OrderTests {
     
     public static void main(String[] args) {
-        Budget budget = new Budget(new BigDecimal("600"), 4);
-        String client = "Ana";
-        LocalDateTime date = LocalDateTime.now();
+        String client = args[0];
+        BigDecimal budgetValue = new BigDecimal(args[1]);
+        int itemsQuantity = Integer.parseInt(args[2]);
 
-        Order order = new Order(client, date, budget);
-
-        System.out.println("Save order to database");
-        System.out.println("Send email with new order data");
+        GenerateOrder generator = new GenerateOrder(client, budgetValue, itemsQuantity);
+        generator.execute();
     }
     
 }
