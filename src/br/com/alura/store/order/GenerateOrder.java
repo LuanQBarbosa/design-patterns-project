@@ -2,10 +2,10 @@ package br.com.alura.store.order;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import br.com.alura.store.budget.Budget;
-import br.com.alura.store.order.action.SendOrderEmail;
-import br.com.alura.store.order.action.StoreOrderOnDatabase;
+import br.com.alura.store.order.action.AfterOrderAction;
 
 public class GenerateOrder {
     
@@ -13,10 +13,14 @@ public class GenerateOrder {
     private BigDecimal budgetValue;
     private int itemsQuantity;
 
-    public GenerateOrder(String client, BigDecimal budgetValue, int itemsQuantity) {
+    private List<AfterOrderAction> actions;
+
+    public GenerateOrder(String client, BigDecimal budgetValue, int itemsQuantity, List<AfterOrderAction> actions) {
         this.client = client;
         this.budgetValue = budgetValue;
         this.itemsQuantity = itemsQuantity;
+
+        this.actions = actions;
     }
 
     public void execute() {
@@ -26,11 +30,7 @@ public class GenerateOrder {
         Order order = new Order(this.client, date, budget);
 
         // Possible order actions
-        SendOrderEmail email = new SendOrderEmail();
-        StoreOrderOnDatabase store = new StoreOrderOnDatabase();
-
-        email.execute(order);
-        store.execute(order);
+        actions.forEach(action -> action.executeAction(order));
     }
     
 }
