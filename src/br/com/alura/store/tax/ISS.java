@@ -4,9 +4,13 @@ import java.math.BigDecimal;
 
 import br.com.alura.store.budget.Budget;
 
-public class ISS implements Tax {
+public class ISS extends Tax {
+
+    public ISS(Tax tax) {
+        super(tax);
+    }
     
-    public BigDecimal calculate(Budget budget) {
+    public BigDecimal makeCalculation(Budget budget) {
         return budget.getValue().multiply(new BigDecimal("0.06"));
     }
     
