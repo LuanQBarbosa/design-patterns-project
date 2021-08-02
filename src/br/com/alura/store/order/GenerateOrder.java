@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.alura.store.budget.Budget;
+import br.com.alura.store.budget.BudgetItem;
 import br.com.alura.store.order.action.AfterOrderAction;
 
 public class GenerateOrder {
@@ -24,9 +25,10 @@ public class GenerateOrder {
     }
 
     public void execute() {
-        Budget budget = new Budget(this.budgetValue, this.itemsQuantity);
-        LocalDateTime date = LocalDateTime.now();
+        Budget budget = new Budget();
+        budget.addItem(new BudgetItem(this.budgetValue));
 
+        LocalDateTime date = LocalDateTime.now();
         Order order = new Order(this.client, date, budget);
 
         // Possible order actions

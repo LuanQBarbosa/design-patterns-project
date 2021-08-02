@@ -1,6 +1,8 @@
 package br.com.alura.store.budget;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.alura.store.budget.status.BudgetStatus;
 import br.com.alura.store.budget.status.Finished;
@@ -8,13 +10,13 @@ import br.com.alura.store.budget.status.UnderAnalysis;
 
 public class Budget {
     
+    private List<BudgetItem> items;
     private BigDecimal value;
-    private int itemsQuantity;
     private BudgetStatus status;
 
-    public Budget(BigDecimal value, int itemsQuantity) {
-        this.value = value;
-        this.itemsQuantity = itemsQuantity;
+    public Budget() {
+        this.value = BigDecimal.ZERO;
+        this.items = new ArrayList<>();
         this.status = new UnderAnalysis();
     }
 
@@ -40,7 +42,7 @@ public class Budget {
     }
 
     public int getItemsQuantity() {
-        return itemsQuantity;
+        return items.size();
     }
 
     public BudgetStatus getStatus() {
@@ -53,6 +55,11 @@ public class Budget {
 
     public boolean isFinished() {
         return this.status instanceof Finished;
+    }
+
+    public void addItem(BudgetItem item) {
+        this.value = value.add(item.getValue());
+        this.items.add(item);
     }
 
 }
