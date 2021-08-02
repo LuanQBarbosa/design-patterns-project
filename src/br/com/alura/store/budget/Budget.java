@@ -8,9 +8,9 @@ import br.com.alura.store.budget.status.BudgetStatus;
 import br.com.alura.store.budget.status.Finished;
 import br.com.alura.store.budget.status.UnderAnalysis;
 
-public class Budget {
+public class Budget implements Budgetable {
     
-    private List<BudgetItem> items;
+    private List<Budgetable> items;
     private BigDecimal value;
     private BudgetStatus status;
 
@@ -57,7 +57,7 @@ public class Budget {
         return this.status instanceof Finished;
     }
 
-    public void addItem(BudgetItem item) {
+    public void addItem(Budgetable item) {
         this.value = value.add(item.getValue());
         this.items.add(item);
     }

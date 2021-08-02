@@ -2,7 +2,7 @@ package br.com.alura.store.budget;
 
 import java.math.BigDecimal;
 
-public class BudgetItem {
+public class BudgetItem implements Budgetable {
     
     private BigDecimal value;
 

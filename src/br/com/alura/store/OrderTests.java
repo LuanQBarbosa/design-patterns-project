@@ -14,14 +14,13 @@ public class OrderTests {
     public static void main(String[] args) {
         String client = "Luan";
         BigDecimal budgetValue = new BigDecimal("300");
-        int itemsQuantity = Integer.parseInt("2");
 
         List<AfterOrderAction> actions = Arrays.asList(
             new StoreOrderOnDatabase(),
             new SendOrderEmail()
         );
 
-        GenerateOrder generator = new GenerateOrder(client, budgetValue, itemsQuantity, actions);
+        GenerateOrder generator = new GenerateOrder(client, budgetValue, actions);
         generator.execute();
     }
     

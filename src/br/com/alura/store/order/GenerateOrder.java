@@ -12,14 +12,12 @@ public class GenerateOrder {
     
     private String client;
     private BigDecimal budgetValue;
-    private int itemsQuantity;
 
     private List<AfterOrderAction> actions;
 
-    public GenerateOrder(String client, BigDecimal budgetValue, int itemsQuantity, List<AfterOrderAction> actions) {
+    public GenerateOrder(String client, BigDecimal budgetValue, List<AfterOrderAction> actions) {
         this.client = client;
         this.budgetValue = budgetValue;
-        this.itemsQuantity = itemsQuantity;
 
         this.actions = actions;
     }
