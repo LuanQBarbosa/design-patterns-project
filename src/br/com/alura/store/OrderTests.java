@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.alura.store.order.GenerateOrder;
 import br.com.alura.store.order.action.AfterOrderAction;
+import br.com.alura.store.order.action.OrderLog;
 import br.com.alura.store.order.action.SendOrderEmail;
 import br.com.alura.store.order.action.StoreOrderOnDatabase;
 
@@ -17,7 +18,8 @@ public class OrderTests {
 
         List<AfterOrderAction> actions = Arrays.asList(
             new StoreOrderOnDatabase(),
-            new SendOrderEmail()
+            new SendOrderEmail(),
+            new OrderLog()
         );
 
         GenerateOrder generator = new GenerateOrder(client, budgetValue, actions);
